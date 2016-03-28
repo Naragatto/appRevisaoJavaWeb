@@ -35,7 +35,8 @@ public class ServletController extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
+		String opcao = request.getParameter("opcao");
+
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
 		
@@ -46,31 +47,36 @@ public class ServletController extends HttpServlet {
 		
 		usuarioDAO uD = new usuarioDAO();
 		RequestDispatcher rd;
-		
-		
-		try {
-			boolean retorno = uD.autenticado(u);
-			if(retorno){
-				String pagina = "/principal.jsp";
-				rd = getServletContext().getRequestDispatcher(pagina);
-				rd.forward(request, response);
-			}else{
+		if(opcao.equals("LOGAR")){
+			try {
+				boolean retorno = uD.autenticado(u);
+				if(retorno){
+					request.getSession().setAttribute("user", u);
+					String pagina = "/WEB-INF/jsp/principal.jsp";
+					rd = getServletContext().getRequestDispatcher(pagina);
+					rd.forward(request, response);
+				}else{
+					String pagina = "/index.jsp";
+					rd = getServletContext().getRequestDispatcher(pagina);
+					rd.forward(request, response);
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 				String pagina = "/index.jsp";
 				rd = getServletContext().getRequestDispatcher(pagina);
 				rd.forward(request, response);
-			}
+			}			
 			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			String pagina = "/index.jsp";
-			rd = getServletContext().getRequestDispatcher(pagina);
-			rd.forward(request, response);
 		}
 		
-		
-
-		
+		if(opcao.equals("cadastrarUsuario")){
+			request.getSession().setAttribute("user", u);
+			String pagina = "/WEB-INF/jsp/cadastraUsuario.jsp";
+			rd = getServletContext().getRequestDispatcher(pagina);
+			rd.forward(request, response);			
+		}
 		
 		
 		
