@@ -10,7 +10,7 @@
 
 	<h1>Welcome ${user.usuario}!</h1>
 	
-	<a href="servletController?opcao=cadastrarUsuario"> Cadastrar Usuario</a>
+	<a href="mvc?logica=principalCadastrarUsuario"> Cadastrar Usuario</a>
 
 </body>
 </html>

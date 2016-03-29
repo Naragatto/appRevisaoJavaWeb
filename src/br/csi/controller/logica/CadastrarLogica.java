@@ -6,11 +6,11 @@ import javax.servlet.http.HttpServletResponse;
 import br.csi.model.usuario;
 import br.csi.model.DAO.usuarioDAO;
 
-public class LogarLogica implements Logica{
+public class CadastrarLogica implements Logica{
 
 	@Override
 	public String executa(HttpServletRequest rq, HttpServletResponse rp) throws Exception {
-		String pagina = "/index.jsp";
+		String pagina = "/WEB-INF/jsp/cadastraUsuario.jsp";
 		
 		String login = rq.getParameter("login");
 		String senha = rq.getParameter("senha");		
@@ -22,7 +22,7 @@ public class LogarLogica implements Logica{
 		
 		usuarioDAO uD = new usuarioDAO();
 		
-		boolean retorno = uD.autenticado(u);
+		boolean retorno = uD.inserir(u);
 		
 		if(retorno){
 			pagina = "/WEB-INF/jsp/principal.jsp";
@@ -31,5 +31,5 @@ public class LogarLogica implements Logica{
 		
 		return pagina;
 	}
-	
+
 }

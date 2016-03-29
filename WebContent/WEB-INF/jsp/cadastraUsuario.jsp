@@ -10,7 +10,15 @@
 <title>Cadastrar Usuario</title>
 </head>
 <body>
-
-
+	<h1>Cadastrar Usuario</h1>
+	
+		<form action="/appRevisaoJavaWeb/mvc?logica=CadastrarLogica" method="post">
+			<label for="login">Login:</label>
+			<input type="text" id="login" name="login" /> <br />
+			<label for="senha">Senha:</label>
+			<input type="text" id="senha" name="senha"> <br />
+			<button type="submit">CADASTRAR</button>
+		</form>
+		
 </body>
 </html>

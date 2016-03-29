@@ -33,6 +33,21 @@ public class usuarioDAO {
 		}*/
 	}
 	
+	public boolean inserir(usuario u) throws SQLException{
+		boolean inserido = false;
+		Connection c = conectDBPostgres.getConection();
+		
+		String sql ="insert into usuario(login, senha) values (?, ?)";
+		PreparedStatement stmtPre = c.prepareStatement(sql);
+		stmtPre.setString(1, u.getUsuario());
+		stmtPre.setString(2, u.getSenha());
+		if(stmtPre.executeUpdate() > 0){
+			inserido = true;
+		}
+		
+		return inserido;
+	}
+	
 	public boolean autenticado(usuario u) throws SQLException{
 		boolean autenticado = false;
 		
@@ -48,9 +63,9 @@ public class usuarioDAO {
 		
 		
 		while(rs.next()){
-			long id = rs.getLong("id");
-			String usuario = rs.getString("login");
-			String senha = rs.getString("senha");
+			//long id = rs.getLong("id");
+			//String usuario = rs.getString("login");
+			//String senha = rs.getString("senha");
 			autenticado = true;
 		}
 		

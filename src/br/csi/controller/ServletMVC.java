@@ -43,7 +43,7 @@ public class ServletMVC extends HttpServlet {
 		String nomeDaclasse = "br.csi.controller.logica."+log;
 		
 		try{
-			Class classe = Class.forName(nomeDaclasse);
+			Class<?> classe = Class.forName(nomeDaclasse);
 			Logica logica = (Logica) classe.newInstance();
 			String pagina = logica.executa(rq, rp);
 			rq.getRequestDispatcher(pagina).forward(rq, rp);

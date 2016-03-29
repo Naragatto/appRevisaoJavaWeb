@@ -16,13 +16,12 @@
 		</c:if>
 		 --%>
 		
-		<form action="/appRevisaoJavaWeb/mvc?Logica=LogarLogica" method="post">
+		<form action="/appRevisaoJavaWeb/mvc?logica=LogarLogica" method="post">
 			<label for="login">Login:</label>
 			<input type="text" id="login" name="login" /> <br />
 			<label for="senha">Senha:</label>
 			<input type="text" id="senha" name="senha"> <br />
 			<button type="submit">LOGAR</button>
-			<input type="hidden" name="opcao" value="LOGAR"/>
 		</form>
 		
 		
