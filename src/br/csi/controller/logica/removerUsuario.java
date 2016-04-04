@@ -5,16 +5,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.csi.model.DAO.usuarioDAO;
 
-public class principalCadastrarUsuario implements Logica{
-	
+public class removerUsuario implements Logica{
+
 	@Override
 	public String executa(HttpServletRequest rq, HttpServletResponse rp) throws Exception {
 		
-		String pagina = "/WEB-INF/jsp/cadastraUsuario.jsp";
+		String pagina = "/WEB-INF/jsp/principal.jsp";
+		
+		int id = Integer.valueOf(rq.getParameter("id"));
 		
 		usuarioDAO uD = new usuarioDAO();
-
-		rq.getSession().setAttribute("usuarios", uD.getUsuarios());
+		
+		uD.remover(id);		
+		
 		return pagina;
 	}
+
 }

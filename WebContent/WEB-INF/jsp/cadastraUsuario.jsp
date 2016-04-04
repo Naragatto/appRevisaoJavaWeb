@@ -20,5 +20,29 @@
 			<button type="submit">CADASTRAR</button>
 		</form>
 		
+		
+		
+		<table>
+			<thead>
+				<tr>
+					<th>Usuario</th>
+					<th>Senha</th>
+					<th>X</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="usuario" items="${usuarios}">
+					<tr>
+						<td>${usuario.usuario}</td>
+						<td>${usuario.senha}</td>
+						<td>
+							<a href="mvc?logica=alterarUsuario&&id=${usuario.id}">Alterar</a>
+							<a href="mvc?logica=removerUsuario&&id=${usuario.id}">Remover</a>
+						</td>
+					</tr>
+				</c:forEach>			
+			</tbody>
+		</table>
+		
 </body>
 </html>

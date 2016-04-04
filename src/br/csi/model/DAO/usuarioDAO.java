@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import br.csi.model.usuario;
 import br.csi.model.util.conectDBPostgres;
 
@@ -48,6 +52,20 @@ public class usuarioDAO {
 		return inserido;
 	}
 	
+	public boolean remover(int id) throws SQLException{
+		boolean removido = false;
+		Connection c = conectDBPostgres.getConection();
+		
+		String sql ="delete from usuario where id =?";
+		PreparedStatement stmtPre = c.prepareStatement(sql);
+		stmtPre.setInt(1, id);
+		if(stmtPre.executeUpdate() > 0){
+			removido = true;
+		}
+		
+		return removido;
+	}
+	
 	public boolean autenticado(usuario u) throws SQLException{
 		boolean autenticado = false;
 		
@@ -71,6 +89,29 @@ public class usuarioDAO {
 		
 		return autenticado;
 		
+	}
+	
+	public List<usuario> getUsuarios(){
+		ArrayList<usuario> usuarios = new ArrayList<usuario>();
+		System.out.println("dentro do getUsuarios()");
+		try{
+				
+			PreparedStatement stmt =  conectDBPostgres.getConection().prepareStatement("select * from USUARIO");
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()){
+				usuario t = new usuario();
+				t.setId(rs.getLong("id"));
+				t.setUsuario(rs.getString("login"));
+				t.setSenha(rs.getString("senha"));
+				System.out.println("usuário: "+t.getUsuario());
+				usuarios.add(t);
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return usuarios;
 	}
 	
 }
