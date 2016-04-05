@@ -20,13 +20,14 @@ public class LogarLogica implements Logica{
 		u.setUsuario(login);
 		u.setSenha(senha);
 		
+		
 		usuarioDAO uD = new usuarioDAO();
 		
-		boolean retorno = uD.autenticado(u);
+		boolean logado = uD.autenticado(u);
 		
-		if(retorno){
+		if(logado){
 			pagina = "/WEB-INF/jsp/principal.jsp";
-			rq.getSession().setAttribute("user", u);
+			rq.getSession().setAttribute("usuarioLogado", u);
 		}
 		
 		return pagina;

@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<h1>Welcome ${user.usuario}!</h1>
+	<h1>Welcome ${usuarioLogado.usuario}!</h1>
 	
 	<a href="mvc?logica=principalCadastrarUsuario"> Cadastrar Usuario</a>
 

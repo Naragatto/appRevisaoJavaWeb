@@ -66,6 +66,17 @@ public class usuarioDAO {
 		return removido;
 	}
 	
+	public ResultSet getUsuarioById(int id) throws SQLException{
+		Connection c = conectDBPostgres.getConection();
+		
+		String sql ="select * from usuario where id =?";
+		PreparedStatement stmtPre = c.prepareStatement(sql);
+		stmtPre.setInt(1, id);
+		ResultSet rs = stmtPre.executeQuery();
+		
+		return rs;
+	}
+	
 	public boolean autenticado(usuario u) throws SQLException{
 		boolean autenticado = false;
 		
